@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>To Do List</title>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">To Do List</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form action="." class="form-inline my-2 my-lg-0" method="POST">
+        {% csrf_token %}
+          <input class="form-control mr-sm-2" type="search" placeholder="Add Item" aria-label="Search" name="item">
+          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Add To List</button>
+        </form>
+      </div>
+  </nav>
+  <br><br>
+
+  <div class="container">
+    {% if TaskList %}
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Task List</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+        {% for item in TaskList %}
+          <tbody>
+            <tr>
+              <td><strong>{{ item.task }}</strong></td>
+              {% if item.completed == False %}
+                <td><a href="{% url 'ToDoList:cross' item.id %}">Cross Off</a></td>
+              {% else %}
+                <td><a href="{% url 'ToDoList:uncross' item.id %}" style="text-decoration: line-through">Uncross</a></td>
+              {% endif %}
+              <td><a href="{% url 'ToDoList:delete' item.id %}">Delete</a></td>
+            </tr>
+          </tbody>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+  </div>
+  </body>
+</html>

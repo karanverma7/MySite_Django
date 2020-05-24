@@ -1,0 +1,13 @@
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+UNKNOWN.egg-info/PKG-INFO
+UNKNOWN.egg-info/SOURCES.txt
+UNKNOWN.egg-info/dependency_links.txt
+UNKNOWN.egg-info/top_level.txt
+polls/static/polls/style.css
+polls/static/polls/images/background-4232859_1280.png
+polls/templates/polls/detail.html
+polls/templates/polls/index.html
+polls/templates/polls/results.html
